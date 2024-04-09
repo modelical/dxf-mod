@@ -85,5 +85,8 @@
       "lib/",
       "dist/"
     ]
-  }
+  },
+  "publishConfig": {
+		"@modelical:registry": "https://npm.pkg.github.com"
+	}
 }
