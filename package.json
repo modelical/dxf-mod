@@ -1,6 +1,6 @@
 {
-  "name": "dxf",
-  "version": "5.1.0",
+  "name": "dxf-mod",
+  "version": "0.0.1",
   "description": "DXF parser for node/browser",
   "main": "lib/index.js",
   "bin": {
@@ -13,7 +13,7 @@
     "compile": "babel -d lib/ src/",
     "dist": "browserify lib/index.js --standalone dxf -o dist/dxf.js",
     "lint": "eslint src test",
-    "prepublishOnly": "npm run lint && npm run test && rimraf dist/ lib/ && npm run compile && npm run dist",
+    "build": "npm run lint && npm run test && rimraf dist/ lib/ && npm run compile && npm run dist",
     "prettier": "prettier --write .",
     "test": "npm run test:unit",
     "test:functional": "cd test/functional && webpack-dev-server",
@@ -29,12 +29,9 @@
     "Parser",
     "SVG"
   ],
-  "author": "Ben Nortier <ben@bjnortier.com>",
+  "author": "Modelical",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/skymakerolof/dxf/issues"
-  },
-  "homepage": "https://github.com/skymakerolof/dxf",
+  "homepage": "https://github.com/modelical/dxf-mod.git",
   "devDependencies": {
     "@babel/cli": "^7.22.10",
     "@babel/core": "^7.22.10",
@@ -87,6 +84,6 @@
     ]
   },
   "publishConfig": {
-		"@modelical:registry": "https://npm.pkg.github.com"
-	}
+    "@modelical:registry": "https://npm.pkg.github.com"
+  }
 }
