@@ -22,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/skymakerolof/dxf.git"
+    "url": "git+https://github.com/modelical/dxf-mod.git"
   },
   "keywords": [
     "DXF",
