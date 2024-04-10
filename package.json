@@ -1,6 +1,13 @@
 {
   "name": "@modelical/dxf-mod",
-  "version": "0.0.1",
+  "version": "0.1.0",
+  "publishConfig": {
+    "@modelical:registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/modelical/dxf-mod.git"
+  },
   "description": "DXF parser for node/browser",
   "main": "lib/index.js",
   "bin": {
@@ -19,10 +26,6 @@
     "test:functional": "cd test/functional && webpack-dev-server",
     "test:unit": "mocha --require @babel/register --recursive test/unit/**",
     "test:unit:watch": "npm run test:unit -- --watch"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/modelical/dxf-mod.git"
   },
   "keywords": [
     "DXF",
@@ -82,8 +85,5 @@
       "lib/",
       "dist/"
     ]
-  },
-  "publishConfig": {
-    "@modelical:registry": "https://npm.pkg.github.com"
   }
 }
