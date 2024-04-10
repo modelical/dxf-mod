@@ -31,7 +31,7 @@ jobs:
       - run: npm ci
       - run: npm run prepublishOnly
       - run: cp package.json ./dist
-      - run: npm publish
         working-directory: dist
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
