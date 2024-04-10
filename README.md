@@ -109,17 +109,42 @@ will execute the unit tests.
 
 `$ npm run test:functional` will run the functional tests in a browser. Please open `toSVG.html` when the file listing loads in the browser (or open `http://localhost:8030/toSVG.html#/`).
 
-### Contributors
+### Publish a Package
 
-- Liam Mitchell https://github.com/LiamKarlMitchell
-- Artur Zochniak https://github.com/arjamizo
-- Andy Werner https://github.com/Gallore
-- Ivan Baktsheev https://github.com/apla
-- Jeff Chen https://github.com/jeffontheground
-- Markko Paas https://github.com/markkopaas
-- Kim Lokøy https://github.com/klokoy
-- Erik Söhnel https://github.com/hoeck
-- Teja https://github.com/hungerpirat
-- Jakob Pallhuber https://github.com/Joge97
-- Eric Mansfield https://github.com/ericman314
-- Kristofer https://github.com/kriffe
+Configure 3 follwing things:
+
+Your GitHub repository: create and save somewhere the access token
+
+package.json (only fields relevant to publishing given, must configure the rest according to your project requirements)
+
+{
+  // Any instance of @my-gh-account-name must be a lower case
+  "name": "@my-gh-account-name/my-package",
+  "version": "0.1.0",
+  "publishConfig": {
+    // Prefix the registry with your account name as per below
+    "@my-gh-account-name:registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/my-gh-account-name/my-package-repository.git"
+  }
+}
+.npmrc
+
+//npm.pkg.github.com/:_authToken=${GITHUB_AUTH_TOKEN}
+Create the .npmrc file as follows and assign GITHUB_AUTH_TOKEN environmemt variable the token value created in 1. from your OS terminal (GITHUB_AUTH_TOKEN=token in Linux or $env:GITHUB_AUTH_TOKEN="token" in Windows 10) or any other way.
+
+Now build your package into say dist/ folder and then publish it with npm publish ./dist (npm publish --help for more options).
+
+To publish packages under your GitHub organization replace my-gh-account-name above with an organization name.
+
+### Install the Package
+
+At the Node application where you want to install the package create .npmrc file with the following content:
+
+@my-gh-account-name:registry="https://npm.pkg.github.com"
+//npm.pkg.github.com/:_authToken=${GITHUB_AUTH_TOKEN}
+Then set GITHUB_AUTH_TOKEN variable as in publishing receipe above.
+
+Now issue npm i @my-gh-account-name/my-package command at your terminal. The package is installed.
