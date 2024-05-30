@@ -15,7 +15,7 @@ export const process = (tuples) => {
     (entity, tuple) => {
       const type = tuple[0]
       const value = tuple[1]
-
+      entity.selectable = true
       switch (type) {
         case 100:
           status = 'IDLE'
@@ -217,7 +217,31 @@ export const process = (tuples) => {
           entity.color.tint = value
           break
         default:
-          Object.assign(entity, common(type, value))
+          if (!Object.keys(entity).some(o => Object.keys(common(type, value)).includes(o))) {
+            entity = { ...entity, ...common(type, value) }
+          }
+          else {
+            const newObject = common(type, value)
+            for (const key in newObject) {
+              if (Object.hasOwnProperty.call(entity, key)) {
+                const valueO = entity[key];
+                const valueN = newObject[key];
+                if (Array.isArray(valueO) && Array.isArray(valueN)) {
+                  entity[key] = [...valueO, ...valueN]
+                }
+                else if (Array.isArray(valueO)) {
+                  entity[key] = [...valueO, valueN]
+                }
+                else if (Array.isArray(valueN)) {
+                  entity[key] = [valueO, ...valueN]
+                }
+                else {
+                  entity[key] = [valueO, valueN]
+                }
+              }
+            }
+          }
+
           break
       }
       return entity
